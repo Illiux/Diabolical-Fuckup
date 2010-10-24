@@ -193,6 +193,7 @@ bool DFGame::init_GL(){
 	}
 
 	glEnable(GL_ALPHA_TEST);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//else
 	return true;
