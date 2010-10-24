@@ -3,12 +3,13 @@ project(diabolical)
 
 set (
 	SOURCES
-	glheader.h
-	glmain.cpp
+	test_image.cpp
 	)
 
 Find_Package( SDL REQUIRED )
 Find_Package( SDL_image REQUIRED )
+
+include_directories( ${SDL_INCLUDE_DIR} )
 
 link_libraries(${SDL_LIBRARY} ${SDLIMAGE_LIBRARY})
 
