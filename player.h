@@ -7,7 +7,7 @@
 #include "globals.h"
 
 #define PLAYER_WIDTH	50
-#define PLAYER_HEIGHT 	100
+#define PLAYER_HEIGHT 	80
 
 class Player: public GameObject {
 private:
