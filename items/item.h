@@ -7,15 +7,24 @@
 
 class Item: public GameObject
 {
-private:
+protected:
 	Texture* texture;
+	float x;
+	float y;
 public:
-	virtual void Pickup();
-	virtual void Place();
-	virtual void Use();
-	virtual void Look();
-	bool mouseOver(float,float)
-}
+	virtual void pickup()=0;
+	virtual void place()=0;
+	virtual void use()=0;
+	virtual void look()=0;
+	virtual float getWidth();
+	virtual float getHeight();
+	virtual float getX();
+	virtual float getY();
+	virtual void	move(float,float);
+	virtual void	setPosition(float,float);
+	virtual void	draw();
+	bool mouseOver(float,float);
+};
 
 
 #endif

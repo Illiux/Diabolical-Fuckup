@@ -20,6 +20,8 @@ set (
 	ui.cpp
 	items/item.h
 	items/item.cpp
+	items/door.h
+	items/door.cpp
 	)
 
 Find_Package( SDL REQUIRED )

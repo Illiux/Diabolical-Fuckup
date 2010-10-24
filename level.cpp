@@ -24,3 +24,7 @@ void Level::draw()
 std::vector<GameObject *>* Level::getPlatforms() {
 	return &platforms;
 }
+
+std::vector<GameObject *>* Level::getObjects() {
+	return &objects;
+}

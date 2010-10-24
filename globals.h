@@ -14,6 +14,8 @@
 #define FLOOR_WIDTH		800
 #define FPS						60
 #define SCALE_FACTOR  50
+#define ITEM_WIDTH		50
+#define	ITEM_HEIGHT		50
 
 typedef struct {
 	float x;

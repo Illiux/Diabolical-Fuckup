@@ -1,8 +1,12 @@
 #include "dfgame.h"
 
+DFGame *game;
+
 int main(int argc, char** argv){
-	DFGame game;
-	int ret = game.MainLoop();
+	game = new DFGame();
+	int ret = game->MainLoop();
+
+	delete game;
 
 	return ret;
 }

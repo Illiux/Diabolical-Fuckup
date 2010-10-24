@@ -6,6 +6,8 @@ Randy Tobias
 
 #include "dfgame.h"
 
+Player* player;
+
 DFGame::~DFGame() {
 	SDL_Quit();
 }
@@ -84,6 +86,7 @@ int DFGame::MainLoop() {
 
 		level->draw();
 		ui->draw();
+		player->draw();
 		
 		SDL_GL_SwapBuffers();
 		SDL_Delay(1);
@@ -91,6 +94,11 @@ int DFGame::MainLoop() {
 
 	return 0;
 
+}
+
+void DFGame::setLevel(Level* level)
+{
+	this->level = level;
 }
 
 DFGame::DFGame()
@@ -136,11 +144,17 @@ DFGame::DFGame()
 		Platform *floor = new Platform(0,450,FLOOR_WIDTH,FLOOR_HEIGHT,tex);
 		Platform *thing = new Platform(500,250,FLOOR_WIDTH/3,FLOOR_HEIGHT,tex);
 
+		// Door?
+		Door *door = new Door(0,0);
+
 		// Create a level and add everything
 		level = new Level();
 		level->addPlatform(floor);
 		level->addPlatform(thing);
-		level->addObject(player);
+		level->addObject(door);
+
+		Level *level2 = new Level();
+		level2->addPlatform(floor);
 
 		// Set level on player
 		player->setLevel(level);

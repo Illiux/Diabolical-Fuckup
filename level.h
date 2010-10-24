@@ -14,6 +14,7 @@ public:
 	void addPlatform(GameObject *);
 	void draw();
 	std::vector<GameObject*>* getPlatforms();
+	std::vector<GameObject*>* getObjects();
 };
 
 #endif

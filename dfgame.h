@@ -6,6 +6,7 @@
 #include "player.h"
 #include "level.h"
 #include "ui.h"
+#include "items/door.h"
 
 class DFGame
 {
@@ -13,7 +14,6 @@ private:
 	bool init_GL();
 	bool valid;
 	SDL_Event event;
-	Player *player;
 	UI *ui;
 	Level *level;
 public:
@@ -21,6 +21,10 @@ public:
 	~DFGame();
 	int MainLoop();
 	bool IsValid();
+	void setLevel(Level*);
 };
+
+extern DFGame* game;
+extern Player* player;
 
 #endif
