@@ -51,6 +51,12 @@ SDL_Init(SDL_INIT_EVERYTHING);
 //set up screen
 screen = SDL_SetVideoMode(800,600,32,SDL_SWSURFACE);
 
+if ( screen == NULL ) 
+{
+        fprintf(stderr, "Unable to set 800x600 video: %s\n", SDL_GetError());
+        exit(1);
+}
+
 //load image
 hello = SDL_LoadBMP("porn.bmp");
 
@@ -76,13 +82,6 @@ SDL_FreeSurface(hello);
   }
   //ensure SDL_Quit is called when the program exits
   atexit(SDL_Quit);
-   
-  //set video mode of 640 x 480 with 16-bit pixels
-  //screen = SDL_SetVideoMode(640, 480, 16, SDL_SWSURFACE);
-  if ( screen == NULL ) {
-        fprintf(stderr, "Unable to set 800x600 video: %s\n", SDL_GetError());
-        exit(1);
-  }
   
   wait_for_events();
   
