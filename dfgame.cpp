@@ -69,17 +69,28 @@ int DFGame::MainLoop() {
 						player->stopRight();
 						break;
 						case 'e':
-						//door->use();
-						//player-setLevel(level2);
+						
 						break;
 					}
 				break;
 			case SDL_MOUSEMOTION:             //mouse moved
 			    //printf("Mouse motion x:%d, y:%d\n", event.motion.x, event.motion.y );
 			    break;
-			case SDL_MOUSEBUTTONUP:           //mouse button pressed
+			case SDL_MOUSEBUTTONUP:{           //mouse button pressed
 			    printf("Mouse pressed x:%d, y:%d\n", event.button.x, event.button.y );
 			    printf("Slot %d was clicked\n", ui->getSlotNum(event.motion.x, event.motion.y));
+			    
+			    //check for player collision to activate door
+			    std::vector<Item*>* objects = level->getObjects();
+			    std::vector<Item*>::iterator i;
+			    for (i=(*objects).begin();i<(*objects).end();i++) {
+			    if ((*i)->mouseOver(event.button.x,event.button.y)){ 
+				if (player->singleCollide(*i)){
+				    (*i)->use();
+				}
+			    }
+			    }
+			};
 			    break; 
 			case SDL_QUIT:			//'x' of Window clicked
 			    exit ( 1 );
