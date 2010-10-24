@@ -68,6 +68,10 @@ int DFGame::MainLoop() {
 						case 'd':
 						player->stopRight();
 						break;
+						case 'e':
+						//door->use();
+						//player-setLevel(level2);
+						break;
 					}
 				break;
 			case SDL_MOUSEMOTION:             //mouse moved
@@ -137,7 +141,10 @@ DFGame::DFGame()
 		Texture *left = new Texture("images/Tesla_left.png");
 		Texture *right = new Texture("images/Tesla_right.png");
 		Texture *tex = new Texture("images/greybrick.png");
-	
+		Texture *doorclosed = new 
+Texture("images/door_closed.png");
+		Texture *dooropen = new Texture("images/door_open.png");
+		
 		player = new Player(left,right,front);
 		
 		// Initialize some platforms
@@ -145,23 +152,27 @@ DFGame::DFGame()
 		Platform *thing = new Platform(500,250,FLOOR_WIDTH/3,FLOOR_HEIGHT,tex);
 
 		// Door?
-		Door *door = new Door(0,0);
+		Door *door1 = new Door(700,350,dooropen,doorclosed);
+		Door *door2 = new Door(0,0,dooropen,doorclosed);
+		door1->link(door2);
 
 		// Create a level and add everything
 		level = new Level();
 		level->addPlatform(floor);
 		level->addPlatform(thing);
-		level->addObject(door);
+		level->addObject(door1);
 
 		Level *level2 = new Level();
 		level2->addPlatform(floor);
+		level2->addPlatform(thing);
+		level2->addPlatform(thing);
+		level2->addObject(door2);
 
 		// Set level on player
 		player->setLevel(level);
 }
 
 bool DFGame::init_GL(){
-	glEnable( GL_TEXTURE_2D );
 	//clear color
 	glClearColor(0,0,0,0);
 
@@ -180,6 +191,8 @@ bool DFGame::init_GL(){
 	if (glGetError() != GL_NO_ERROR){
 		return false;
 	}
+
+	glEnable(GL_ALPHA_TEST);
 
 	//else
 	return true;

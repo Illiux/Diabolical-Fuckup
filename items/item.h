@@ -23,6 +23,10 @@ public:
 	virtual void	move(float,float);
 	virtual void	setPosition(float,float);
 	virtual void	draw();
+	virtual void Pickup();
+	virtual void Place();
+	virtual void Use();
+	virtual void Look();
 	bool mouseOver(float,float);
 };
 

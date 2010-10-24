@@ -66,3 +66,11 @@ void Item::draw() {
 	// Reset original translate
 	glTranslatef(-x,-y,1.0);
 }
+
+void Item::Pickup(){}
+
+void Item::Place(){}
+
+void Item::Use(){}
+
+void Item::Look(){}
