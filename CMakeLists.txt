@@ -4,6 +4,7 @@ project(diabolical)
 set (
 	SOURCES
 	test_image.cpp
+	mouse.h
 	)
 
 Find_Package( SDL REQUIRED )
