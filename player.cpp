@@ -63,22 +63,22 @@ void Player::setHealth(float health)
 
 void Player::moveLeft()
 {
-//    printf("Player moves LEFT \n");
+    printf("Player moves LEFT \n");
 }
 
 void Player::moveRight()
 {
-//    printf("Player moves RIGHT \n");
+    printf("Player moves RIGHT \n");
 }
 
 void Player::moveUp()
 {
-//    printf("Player moves UP \n");
+    printf("Player moves UP \n");
 }
 
 void Player::moveDown()
 {
-//    printf("Player moves DOWN \n");
+    printf("Player moves DOWN \n");
 }
 
 void Player::draw()

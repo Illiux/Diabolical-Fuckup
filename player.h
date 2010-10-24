@@ -1,7 +1,7 @@
 #ifndef _DFGAME_PLAYER_H_
 #define _DFGAME_PLAYER_H_
 
-#include "stdlib.h"
+#include "stdio.h"
 
 #define PLAYER_WIDTH	50
 #define PLAYER_HEIGHT 	100
