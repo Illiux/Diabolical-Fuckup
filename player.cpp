@@ -6,6 +6,7 @@ Randy Tobias
 
 #include "player.h"
 
+
 Player::Player()
 {
     x = 0.0;
@@ -58,6 +59,26 @@ float Player::getHealth()
 void Player::setHealth(float health)
 {
     this->health = health;
+}
+
+void Player::moveLeft()
+{
+//    printf("Player moves LEFT \n");
+}
+
+void Player::moveRight()
+{
+//    printf("Player moves RIGHT \n");
+}
+
+void Player::moveUp()
+{
+//    printf("Player moves UP \n");
+}
+
+void Player::moveDown()
+{
+//    printf("Player moves DOWN \n");
 }
 
 void Player::draw()
