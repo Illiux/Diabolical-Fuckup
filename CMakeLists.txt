@@ -10,6 +10,6 @@ set (
 Find_Package( SDL REQUIRED )
 Find_Package( SDL_image REQUIRED )
 
-link_libraries(${SDL_LIBRARY} ${SDLIMAGE_LIBRARY}  SDLmain)
+link_libraries(${SDL_LIBRARY} ${SDLIMAGE_LIBRARY})
 
 add_executable(diabolical ${SOURCES})
