@@ -17,11 +17,25 @@ int DFGame::MainLoop() {
 	
 	Platform floor(0,450,FLOOR_WIDTH,FLOOR_HEIGHT);
 
+	player->setFloor(&floor);
+
 	if (!IsValid()) {
 		return 1;
 	}
 
+	float dTime=0.0;
+	int thisTime=0;
+	int lastTime=0;
+
 	while (quit == false){
+		thisTime = SDL_GetTicks();
+		dTime = (float)(thisTime - lastTime) / 1000;
+		lastTime = thisTime;
+
+		player->doMovement(dTime);
+
+		printf("%f %f\n",player->getX(),player->getY());
+
 		while( SDL_PollEvent( &event ) )
 		{
 			switch (event.type) {		//check the event type
@@ -38,9 +52,6 @@ int DFGame::MainLoop() {
 				player->moveUp();
 			    else if ( key[0] == 's' ) 	// move player down if 's' is pressed
 				player->moveDown();
-			    else if ( key[0] == 'm' ) 	// set draw player = true pressed
-				draw_player = true;
-
 			    break;
 			case SDL_MOUSEMOTION:             //mouse moved
 			    printf("Mouse motion x:%d, y:%d\n", event.motion.x, event.motion.y );
@@ -57,10 +68,10 @@ int DFGame::MainLoop() {
 		glClear( GL_COLOR_BUFFER_BIT );
 
 		floor.draw();
-		if (draw_player)
-		   player->draw();
+		player->draw();
 
 		SDL_GL_SwapBuffers();
+		SDL_Delay(1);
 		}
 	}
 
@@ -80,8 +91,6 @@ DFGame::DFGame()
 				return;
     }
     
-    Player *player = new Player();
-    
     //Create Window
     if( SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_OPENGL ) == NULL )
     {
@@ -99,7 +108,7 @@ DFGame::DFGame()
     //Set caption
     SDL_WM_SetCaption( "Diabolical Fuckup", NULL );
     
-    return;    
+		player = new Player();
 }
 
 bool DFGame::init_GL(){

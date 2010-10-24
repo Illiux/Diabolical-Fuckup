@@ -12,4 +12,9 @@
 #define FLOOR_WIDTH		800
 #define FPS						60
 
+typedef struct {
+	float x;
+	float y;
+} Vect2D;
+
 #endif

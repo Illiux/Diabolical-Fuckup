@@ -87,7 +87,6 @@ void Player::moveDown()
 
 void Player::draw()
 {
-    printf("In the Draw function \n");
     glTranslatef(x,y,-1.0);
 
     glBegin(GL_QUADS);
@@ -101,6 +100,35 @@ void Player::draw()
 
 	// Reset original translate
 	glTranslatef(-x,-y,1.0);
+}
+
+//temporary
+void Player::setFloor(Platform *floor) {
+	this->floor = floor;
+}
+
+bool Player::collides() {
+	if ((y + PLAYER_HEIGHT) < floor->getY()) return false;
+	if ((x + PLAYER_WIDTH) < floor->getX()) return false;
+	if ((floor->getY() + floor->getHeight()) < y) return false;
+	if ((floor->getX() + floor->getWidth()) < x) return false;
+	return true;
+}
+
+void Player::doMovement(float dT)
+{
+	accel.y -= dT*-9.8;
+	printf("%f\n",accel.y);
+	v.x += accel.x*dT;
+	v.y += accel.y*dT;
+
+	x += v.x*dT;
+	y += v.y*dT;
+
+	if (collides()) {
+		x -= v.x;
+		y -= v.y;
+	}
 }
 /*
 void 	setPosition(float, float);

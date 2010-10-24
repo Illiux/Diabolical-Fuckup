@@ -3,6 +3,7 @@
 
 #include "object.h"
 #include "stdio.h"
+#include "platform.h"
 #include "globals.h"
 
 #define PLAYER_WIDTH	50
@@ -14,7 +15,13 @@ private:
 	float y;
 	float speed;
 	float health;
+	Vect2D	accel;
+	Vect2D	v;
+	Platform *floor;
+	bool	collides();
 public:
+	void setFloor(Platform *);
+	void doMovement(float);
 	Player();
 	virtual void 	setPosition(float, float);
   void 	setX(float);
