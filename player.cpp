@@ -67,23 +67,23 @@ void Player::setHealth(float health)
 
 void Player::moveLeft()
 {
-    printf("Player moves LEFT \n");
-    printf("X: %f\n", x);
+	v.x-=2.5;
 }
 
 void Player::moveRight()
 {
-    printf("Player moves RIGHT \n");
+	v.x+=2.5;
 }
 
 void Player::moveUp()
 {
-    printf("Player moves UP \n");
+	y += 0.01;
+	if (collides())
+		v.y = -10;
 }
 
 void Player::moveDown()
 {
-    printf("Player moves DOWN \n");
 }
 
 void Player::draw()
@@ -110,25 +110,30 @@ void Player::setFloor(Platform *floor) {
 
 bool Player::collides() {
 	if ((y + PLAYER_HEIGHT) < floor->getY()) return false;
-	if ((x + PLAYER_WIDTH) < floor->getX()) return false;
 	if ((floor->getY() + floor->getHeight()) < y) return false;
+	if ((x + PLAYER_WIDTH) < floor->getX()) return false;
 	if ((floor->getX() + floor->getWidth()) < x) return false;
 	return true;
 }
 
 void Player::doMovement(float dT)
 {
-	accel.y -= dT*-9.8;
-	printf("%f\n",accel.y);
+	accel.y = 9.8;
 	v.x += accel.x*dT;
 	v.y += accel.y*dT;
 
-	x += v.x*dT;
-	y += v.y*dT;
 
+	y += v.y*dT*SCALE_FACTOR;
 	if (collides()) {
-		x -= v.x;
-		y -= v.y;
+		y -= v.y*dT*SCALE_FACTOR;
+		accel.y = 0.0;
+		v.y = 0.0;
+	}
+	x += v.x*dT*SCALE_FACTOR;
+	if (collides()) {
+		x -= v.x*dT*SCALE_FACTOR;
+		accel.x = 0.0;
+		v.x = 0.0;
 	}
 }
 /*

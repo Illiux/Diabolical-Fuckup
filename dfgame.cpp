@@ -34,7 +34,7 @@ int DFGame::MainLoop() {
 
 		player->doMovement(dTime);
 
-		printf("%f %f\n",player->getX(),player->getY());
+		//printf("%f %f\n",player->getX(),player->getY());
 
 		while( SDL_PollEvent( &event ) )
 		{
@@ -58,15 +58,20 @@ int DFGame::MainLoop() {
 				case 's':	 	// move player down if 's' is pressed
 				    player->moveDown();
 				    break;
-				case 'm':		// set draw player = true pressed
-				    printf("predraw\n");
-				    draw_player = true;
-				    printf("post draw\n");
-				    break;
-				default:
-				    break;
 			    }
 			    break;
+			case SDL_KEYUP:
+			  key = SDL_GetKeyName(event.key.keysym.sym);
+			  switch ( event.key.keysym.sym)
+			    {
+						case 'a':
+						player->moveRight();
+						break;
+						case 'd':
+						player->moveLeft();
+						break;
+					}
+				break;
 			case SDL_MOUSEMOTION:             //mouse moved
 			    printf("Mouse motion x:%d, y:%d\n", event.motion.x, event.motion.y );
 			    break;
@@ -77,8 +82,7 @@ int DFGame::MainLoop() {
 			    exit ( 1 );
 			    break;
 			}
-
-
+		}	
 		glClear( GL_COLOR_BUFFER_BIT );
 
 		floor.draw();
@@ -86,7 +90,6 @@ int DFGame::MainLoop() {
 
 		SDL_GL_SwapBuffers();
 		SDL_Delay(1);
-		}
 	}
 
 	return 0;

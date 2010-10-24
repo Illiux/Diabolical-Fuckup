@@ -39,6 +39,7 @@ public:
 	void 	moveUp();
 	void	moveDown();
 	void	jump();
+	void	stopX();
 };
 
 #endif
