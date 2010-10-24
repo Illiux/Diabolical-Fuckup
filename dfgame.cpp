@@ -13,6 +13,7 @@ DFGame::~DFGame() {
 int DFGame::MainLoop() {
 	bool quit = false;
 	char *key;
+	bool draw_player = false;
 	
 	Platform floor(0,450,FLOOR_WIDTH,FLOOR_HEIGHT);
 
@@ -37,6 +38,9 @@ int DFGame::MainLoop() {
 				player->moveUp();
 			    else if ( key[0] == 's' ) 	// move player down if 's' is pressed
 				player->moveDown();
+			    else if ( key[0] == 'm' ) 	// set draw player = true pressed
+				draw_player = true;
+
 			    break;
 			case SDL_MOUSEMOTION:             //mouse moved
 			    printf("Mouse motion x:%d, y:%d\n", event.motion.x, event.motion.y );
@@ -53,6 +57,8 @@ int DFGame::MainLoop() {
 		glClear( GL_COLOR_BUFFER_BIT );
 
 		floor.draw();
+		if (draw_player)
+		   player->draw();
 
 		SDL_GL_SwapBuffers();
 		}

@@ -1,6 +1,7 @@
 #include "platform.h"
 
 void Platform::draw() {
+    
 	glTranslatef(x,y,-1.0);
 
 	glBegin(GL_QUADS);
@@ -13,8 +14,7 @@ void Platform::draw() {
 	glEnd();
 
 	// Reset original translate
-	glTranslatef(-x,-y,1.0);
-}
+	glTranslatef(-x,-y,1.0);}
 
 float Platform::getX() {
 	return x;

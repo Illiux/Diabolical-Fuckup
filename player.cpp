@@ -87,7 +87,20 @@ void Player::moveDown()
 
 void Player::draw()
 {
-    
+    printf("In the Draw function \n");
+    glTranslatef(x,y,-1.0);
+
+    glBegin(GL_QUADS);
+    glColor4f(1.0,1.0,1.0,1.0);
+
+	glVertex3f(0,0,0);
+	glVertex3f(PLAYER_WIDTH,0,0);
+		glVertex3f(PLAYER_WIDTH,PLAYER_HEIGHT,0);
+		glVertex3f(0,PLAYER_HEIGHT,0);
+    glEnd();
+
+	// Reset original translate
+	glTranslatef(-x,-y,1.0);
 }
 /*
 void 	setPosition(float, float);

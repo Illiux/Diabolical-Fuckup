@@ -1,7 +1,7 @@
 #ifndef _PLATFORM_H_
 #define _PLATFORM_H_
 
-#include "dfgame.h"
+#include "globals.h"
 #include "player.h"
 #include "object.h"
 

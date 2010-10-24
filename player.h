@@ -3,6 +3,7 @@
 
 #include "object.h"
 #include "stdio.h"
+#include "globals.h"
 
 #define PLAYER_WIDTH	50
 #define PLAYER_HEIGHT 	100
