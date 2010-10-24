@@ -6,5 +6,5 @@
 #include <iostream>
 
 GLuint LoadTexture(std::string);
-
+SDL_Surface *load_image(std::string filename);
 #endif
