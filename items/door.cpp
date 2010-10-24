@@ -2,8 +2,12 @@
 
 void Door::use()
 {
-	player->setPosition(x,y);
+	if (dest==NULL) {
+		return;
+	}
+	player->setPosition(linkedDoor->getX(),linkedDoor->getY());
 	game->setLevel(dest);
+	player->setLevel(dest);
 }
 
 void Door::look()
@@ -32,11 +36,17 @@ void Door::setLink(Door* otherDoor)
 	linkedDoor = otherDoor;
 }
 
+void Door::setDest(Level* level)
+{
+	dest = level;
+}
+
 Door::Door(float x, float y)
 {
 	this->x = x;
 	this->y = y;
 	texture = new Texture();
+	dest = NULL;
 }
 
 Door::Door(float x, float y, Texture* open,Texture* closed)
@@ -45,6 +55,7 @@ Door::Door(float x, float y, Texture* open,Texture* closed)
 	this->y = y;
 	this->open = open;
 	this->texture = closed;
+	dest = NULL;
 }
 
 void Door::draw()

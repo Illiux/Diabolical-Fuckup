@@ -167,7 +167,7 @@ Texture("images/door_closed.png");
 
 		// Door?
 		Door *door1 = new Door(700,350,dooropen,doorclosed);
-		Door *door2 = new Door(0,0,dooropen,doorclosed);
+		Door *door2 = new Door(0,350,dooropen,doorclosed);
 		door1->link(door2);
 
 		// Create a level and add everything
@@ -178,9 +178,10 @@ Texture("images/door_closed.png");
 
 		Level *level2 = new Level();
 		level2->addPlatform(floor);
-		level2->addPlatform(thing);
-		level2->addPlatform(thing);
 		level2->addObject(door2);
+
+		door2->setDest(level);
+		door1->setDest(level2);
 
 		// Set level on player
 		player->setLevel(level);
