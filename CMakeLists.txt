@@ -9,6 +9,8 @@ set (
 	main.cpp
 	platform.h
 	platform.cpp
+	player.h
+	player.cpp
 	)
 
 Find_Package( SDL REQUIRED )
