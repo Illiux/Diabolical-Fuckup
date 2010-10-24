@@ -16,12 +16,14 @@ class UI
 	int slot_obj_id[10]; //hold the ID number of onjects in the slot. -1 if slot empty
     public:
 	UI();
-	void setSlot(int, float, float, float, float);
+	void setSlotArea(int, float, float, float, float);
 	float getSlotMinX(int);
 	float getSlotMinY(int);
 	float getSlotMaxX(int);
 	float getSlotMaxY(int);
 	int getSlotNum();
 	int getSlotObjID(int);
-	void setSlotObjID(int, int)
-}
+	void setSlotObjID(int, int);
+};
+
+#endif
