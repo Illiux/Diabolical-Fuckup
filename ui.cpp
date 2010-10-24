@@ -68,6 +68,27 @@ void UI::setSlotObj(int id, GameObject *obj)
 {
 	slot_obj[id] = obj;
 }
+
+void UI::draw()
+{
+    for (int i = 0; i<10; i++)
+    {
+	//glTranslatef(x,y,-1.0);
+
+	glBegin(GL_QUADS);
+	    glColor4f(1.0,1.0,255.0,1.0);
+
+	    glVertex3f(0,SCREEN_HEIGHT,0);
+	    glVertex3f(0,SCREEN_HEIGHT - SLOT_HEIGHT,0);
+	    glVertex3f(SLOT_WIDTH * i,SCREEN_HEIGHT,0);
+	    glVertex3f(SLOT_WIDTH * i,SCREEN_HEIGHT - SLOT_HEIGHT,0);
+	    
+	glEnd();
+
+	// Reset original translate
+	//glTranslatef(-x,-y,1.0);
+    }
+}
 /*
 	void setSlot(int, float, float, float, float);
 	float getSlotMinX(int);

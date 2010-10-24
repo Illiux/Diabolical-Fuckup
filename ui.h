@@ -24,6 +24,7 @@ class UI
 	int getSlotNum(float, float);
 	GameObject *getSlotObj(int);
 	void setSlotObj(int, GameObject *);
+	void draw();
 };
 
 #endif

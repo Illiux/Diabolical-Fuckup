@@ -69,7 +69,7 @@ int DFGame::MainLoop() {
 					}
 				break;
 			case SDL_MOUSEMOTION:             //mouse moved
-			    printf("Mouse motion x:%d, y:%d\n", event.motion.x, event.motion.y );
+			    //printf("Mouse motion x:%d, y:%d\n", event.motion.x, event.motion.y );
 			    break;
 			case SDL_MOUSEBUTTONUP:           //mouse button pressed
 			    printf("Mouse pressed x:%d, y:%d\n", event.button.x, event.button.y );
@@ -83,7 +83,8 @@ int DFGame::MainLoop() {
 		glClear( GL_COLOR_BUFFER_BIT );
 
 		level->draw();
-
+		ui->draw();
+		
 		SDL_GL_SwapBuffers();
 		SDL_Delay(1);
 	}
