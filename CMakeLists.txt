@@ -16,6 +16,8 @@ set (
 	level.cpp
 	util.h
 	util.cpp
+	ui.h
+	ui.cpp
 	)
 
 Find_Package( SDL REQUIRED )

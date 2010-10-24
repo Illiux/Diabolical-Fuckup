@@ -5,6 +5,7 @@
 #include "globals.h"
 #include "player.h"
 #include "level.h"
+#include "ui.h"
 
 class DFGame
 {
@@ -13,6 +14,7 @@ private:
 	bool valid;
 	SDL_Event event;
 	Player *player;
+	UI *ui;
 	Level *level;
 public:
 	DFGame();
