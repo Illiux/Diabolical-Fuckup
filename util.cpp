@@ -6,7 +6,7 @@ SDL_Surface *surface;	// This surface will tell us the details of the image
 GLenum texture_format;
 GLint  nOfColors;
  
-if ( (surface = SDL_LoadBMP(filename.c_str())) ) { 
+if ( (surface = load_image(filename.c_str())) ) { 
  
 	// Check that the image's width is a power of 2
 	if ( (surface->w & (surface->w - 1)) != 0 ) {
@@ -63,4 +63,24 @@ if ( surface ) {
 }
 
 return texture;
+}
+
+SDL_Surface *load_image(std::string filename){
+	SDL_Surface* any_image = NULL;
+	
+	
+	//optimized image that will be used
+	SDL_Surface* optimizedimage = NULL;
+	//load image
+	any_image = IMG_Load(filename.c_str());
+	if (any_image != NULL){
+		//create an optimized image
+		optimizedimage = SDL_DisplayFormat(any_image);
+
+		//free the old image
+		SDL_FreeSurface (any_image);
+	}
+	//optimizedimage = zoomSurface(optimizedimage,.5,.5,.5);
+	//return the optimized image
+	return optimizedimage;
 }
