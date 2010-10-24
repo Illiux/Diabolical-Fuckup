@@ -5,91 +5,77 @@ Randy Tobias
 */
 
 #include "dfgame.h"
-#include "SDL.h"
-#include "SDL_image.h"
-#include "SDL_opengl.h"
 
-#define SCREEN_WIDTH			800
-#define SCREEN_HEIGHT			600
-#define SCREEN_BPP				32
-#define Floor_HEIGHT			50
-#define Floor_WIDTH				800
-#define fps						60
-
-SDL_Event event;
-
-int main(int argc, char** argv){
-	bool quit = false;
-
-	if(init() == false){
-		return 1;
-	}
-	Floor Floor;
-	while (quit == false){
-		//fps.start();
-		//While there are events to handle
-        while( SDL_PollEvent( &event ) )
-        {
-            //Handle key presses
-            Floor.handle_input();
-            
-            //Handle user quit
-            if( event.type == SDL_QUIT )
-            {
-                quit = true;
-            }
-        }
-	    
-        //Move the Floor
-        Floor.move();
-	    
-        //Clear the screen
-        glClear( GL_COLOR_BUFFER_BIT );
-	    
-        //Show the Floor
-        Floor.show();
-	    
-        //Update screen
-        SDL_GL_SwapBuffers();
-	    /*
-        //Cap the frame rate
-        if( fps.get_ticks() < 1000 / fps )
-        {
-            SDL_Delay( ( 1000 / fps ) - fps.get_ticks() );
-        }
-		*/
-    }
-
-	return 0;
+DFGame::~DFGame() {
+	SDL_Quit();
 }
 
-bool init()
+int DFGame::MainLoop() {
+	bool quit = false;
+	
+	Floor floor;
+
+	if (!IsValid()) {
+		return 1;
+	}
+
+	while (quit == false){
+		while( SDL_PollEvent( &event ) )
+		{
+			floor.handle_input();
+
+			if( event.type == SDL_QUIT )
+			{
+				quit = true;
+			}
+		}
+
+		floor.move();
+
+		glClear( GL_COLOR_BUFFER_BIT );
+
+		floor.show();
+
+		SDL_GL_SwapBuffers();
+
+	}
+
+	return 0;
+
+}
+
+DFGame::DFGame()
 {
+		valid = true;
+
     //Initialize SDL
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
-        return false;    
+        valid = false;
+				return;
     }
     
     //Create Window
     if( SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_OPENGL ) == NULL )
     {
-        return false;
+				valid = false;
+        return;
     }
     
     //Initialize OpenGL
     if( init_GL() == false )
     {
-        return false;    
+				valid = false;
+        return;   
     }
     
     //Set caption
     SDL_WM_SetCaption( "Diabolical Fuckup", NULL );
     
-    return true;    
+    return;    
 }
 
-bool init_GL(){
+bool DFGame::init_GL(){
 	//clear color
 	glClearColor(0,0,0,0);
 
@@ -110,6 +96,10 @@ bool init_GL(){
 	return true;
 }
 
+bool DFGame::IsValid() {
+	return valid;
+}
+
 void Floor::show(){
 	//move to offset
 
@@ -120,9 +110,9 @@ void Floor::show(){
 		glColor4f(1.0,1.0,1.0,1.0);
 
 		glVertex3f(0,0,0);
-		glVertex3f(Floor_WIDTH,0,0);
-		glVertex3f(Floor_WIDTH,Floor_HEIGHT,0);
-		glVertex3f(0,Floor_HEIGHT,0);
+		glVertex3f(FLOOR_WIDTH,0,0);
+		glVertex3f(FLOOR_WIDTH,FLOOR_HEIGHT,0);
+		glVertex3f(0,FLOOR_HEIGHT,0);
 	glEnd();
 
 	glLoadIdentity();
@@ -150,8 +140,5 @@ void Floor::handle_input(){
 }
 void Floor::move(){
 
-}
-void clean_up(){
-	SDL_Quit();
 }
 

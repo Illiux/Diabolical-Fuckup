@@ -5,6 +5,8 @@ set (
 	SOURCES
 	dfgame.cpp
 	dfgame.h
+	globals.h
+	main.cpp
 	)
 
 Find_Package( SDL REQUIRED )
