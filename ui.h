@@ -21,7 +21,7 @@ class UI
 	float getSlotMinY(int);
 	float getSlotMaxX(int);
 	float getSlotMaxY(int);
-	int getSlotNum();
+	int getSlotNum(float, float);
 	GameObject *getSlotObj(int);
 	void setSlotObj(int, GameObject *);
 };

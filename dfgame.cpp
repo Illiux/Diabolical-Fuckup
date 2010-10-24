@@ -73,6 +73,7 @@ int DFGame::MainLoop() {
 			    break;
 			case SDL_MOUSEBUTTONUP:           //mouse button pressed
 			    printf("Mouse pressed x:%d, y:%d\n", event.button.x, event.button.y );
+			    printf("Slot %d was clicked\n", ui->getSlotNum(event.motion.x, event.motion.y));
 			    break; 
 			case SDL_QUIT:			//'x' of Window clicked
 			    exit ( 1 );
@@ -119,7 +120,8 @@ DFGame::DFGame()
     
     //Set caption
     SDL_WM_SetCaption( "Diabolical Fuckup", NULL );
-    
+
+		ui = new UI();
 		player = new Player();
 	
 		// Initialize some platforms
