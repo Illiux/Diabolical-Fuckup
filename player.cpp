@@ -68,6 +68,7 @@ void Player::setHealth(float health)
 void Player::moveLeft()
 {
     printf("Player moves LEFT \n");
+    printf("X: %f\n", x);
 }
 
 void Player::moveRight()
@@ -90,16 +91,16 @@ void Player::draw()
     glTranslatef(x,y,-1.0);
 
     glBegin(GL_QUADS);
-    glColor4f(1.0,1.0,1.0,1.0);
+	glColor4f(1.0,1.0,1.0,1.0);
 
 	glVertex3f(0,0,0);
 	glVertex3f(PLAYER_WIDTH,0,0);
-		glVertex3f(PLAYER_WIDTH,PLAYER_HEIGHT,0);
-		glVertex3f(0,PLAYER_HEIGHT,0);
+	glVertex3f(PLAYER_WIDTH,PLAYER_HEIGHT,0);
+	glVertex3f(0,PLAYER_HEIGHT,0);
     glEnd();
 
-	// Reset original translate
-	glTranslatef(-x,-y,1.0);
+    // Reset original translate
+    glTranslatef(-x,-y,1.0);
 }
 
 //temporary

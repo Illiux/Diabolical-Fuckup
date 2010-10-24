@@ -41,17 +41,31 @@ int DFGame::MainLoop() {
 			switch (event.type) {		//check the event type
 			case SDL_KEYDOWN:			//if a key has been pressed
 			    key = SDL_GetKeyName(event.key.keysym.sym);
-			    //printf("The %s key was pressed!\n", key );
-			    if ( event.key.keysym.sym == SDLK_ESCAPE )	//quit if 'ESC' pressed
-				quit = true;
-			    else if ( key[0] == 'a' )	//move player left if 'a'  pressed
-				player->moveLeft();
-			    else if ( key[0] == 'd' ) 	//move player right if 'd' is pressed
-				player->moveRight();
-			    else if ( key[0] == 'w' )	// move player up if 'w' is pressed
-				player->moveUp();
-			    else if ( key[0] == 's' ) 	// move player down if 's' is pressed
-				player->moveDown();
+			  switch ( event.key.keysym.sym)
+			    {
+				case SDLK_ESCAPE: 	//quit if 'ESC' pressed
+				    quit = true;
+				    break;
+				case 'a':	 	//move player left if 'a'  pressed
+				    player->moveLeft();
+				    break;
+				case 'd': 		//move player right if 'd' is pressed
+				    player->moveRight();
+				    break;
+				case 'w':		// move player up if 'w' is pressed
+				    player->moveUp();
+				    break;
+				case 's':	 	// move player down if 's' is pressed
+				    player->moveDown();
+				    break;
+				case 'm':		// set draw player = true pressed
+				    printf("predraw\n");
+				    draw_player = true;
+				    printf("post draw\n");
+				    break;
+				default:
+				    break;
+			    }
 			    break;
 			case SDL_MOUSEMOTION:             //mouse moved
 			    printf("Mouse motion x:%d, y:%d\n", event.motion.x, event.motion.y );
