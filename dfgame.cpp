@@ -31,7 +31,7 @@ int DFGame::MainLoop() {
 
 		glClear( GL_COLOR_BUFFER_BIT );
 
-		floor.Draw();
+		floor.draw();
 
 		SDL_GL_SwapBuffers();
 

@@ -3,8 +3,9 @@
 
 #include "dfgame.h"
 #include "player.h"
+#include "object.h"
 
-class Platform {
+class Platform: public GameObject {
 private:
 	Platform();
 	float x;
@@ -14,12 +15,12 @@ private:
 	//GLuint	texture;
 public:
 	Platform(float x, float y, int width, int height);
-	void Move(float x, float y);
-	bool Collides(Player);
-	void Draw();
-	void SetPosition(float x, float y);
-	float getX();
-	float getY();
+	virtual void move(float x, float y);
+	bool collides(Player);
+	virtual void draw();
+	virtual void setPosition(float x, float y);
+	virtual float getX();
+	virtual float getY();
 };
 
 #endif
