@@ -7,6 +7,8 @@ set (
 	dfgame.h
 	globals.h
 	main.cpp
+	platform.h
+	platform.cpp
 	)
 
 Find_Package( SDL REQUIRED )
