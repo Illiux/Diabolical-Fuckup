@@ -26,7 +26,7 @@ int DFGame::MainLoop() {
 			switch (event.type) {		//check the event type
 			case SDL_KEYDOWN:			//if a key has been pressed
 			    key = SDL_GetKeyName(event.key.keysym.sym);
-			    printf("The %s key was pressed!\n", key );
+			    //printf("The %s key was pressed!\n", key );
 			    if ( event.key.keysym.sym == SDLK_ESCAPE )	//quit if 'ESC' pressed
 				quit = true;
 			    else if ( key[0] == 'a' )	//move player left if 'a'  pressed
