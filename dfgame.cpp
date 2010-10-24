@@ -61,10 +61,10 @@ int DFGame::MainLoop() {
 			  switch ( event.key.keysym.sym)
 			    {
 						case 'a':
-						player->moveRight();
+						player->stopLeft();
 						break;
 						case 'd':
-						player->moveLeft();
+						player->stopRight();
 						break;
 					}
 				break;

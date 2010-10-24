@@ -14,8 +14,6 @@ set (
 	object.h
 	level.h
 	level.cpp
-	ui.h
-	ui.cpp
 	)
 
 Find_Package( SDL REQUIRED )
