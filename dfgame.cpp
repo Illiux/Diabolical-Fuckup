@@ -12,6 +12,7 @@ DFGame::~DFGame() {
 
 int DFGame::MainLoop() {
 	bool quit = false;
+	char *key;
 	
 	Platform floor(0,450,FLOOR_WIDTH,FLOOR_HEIGHT);
 
@@ -22,11 +23,31 @@ int DFGame::MainLoop() {
 	while (quit == false){
 		while( SDL_PollEvent( &event ) )
 		{
-			if( event.type == SDL_QUIT )
-			{
+			switch (event.type) {		//check the event type
+			case SDL_KEYDOWN:			//if a key has been pressed
+			    key = SDL_GetKeyName(event.key.keysym.sym);
+			    printf("The %s key was pressed!\n", key );
+			    if ( event.key.keysym.sym == SDLK_ESCAPE )	//quit if 'ESC' pressed
 				quit = true;
+			    else if ( key[0] == 'a' )	//move player left if 'a'  pressed
+				player->moveLeft();
+			    else if ( key[0] == 'd' ) 	//move player right if 'd' is pressed
+				player->moveRight();
+			    else if ( key[0] == 'w' )	// move player up if 'w' is pressed
+				player->moveUp();
+			    else if ( key[0] == 's' ) 	// move player down if 's' is pressed
+				player->moveDown();
+			    break;
+			case SDL_MOUSEMOTION:             //mouse moved
+			    printf("Mouse motion x:%d, y:%d\n", event.motion.x, event.motion.y );
+			    break;
+			case SDL_MOUSEBUTTONUP:           //mouse button pressed
+			    printf("Mouse pressed x:%d, y:%d\n", event.button.x, event.button.y );
+			    break; 
+			case SDL_QUIT:			//'x' of Window clicked
+			    exit ( 1 );
+			    break;
 			}
-		}
 
 
 		glClear( GL_COLOR_BUFFER_BIT );
@@ -34,7 +55,7 @@ int DFGame::MainLoop() {
 		floor.draw();
 
 		SDL_GL_SwapBuffers();
-
+		}
 	}
 
 	return 0;
@@ -43,7 +64,8 @@ int DFGame::MainLoop() {
 
 DFGame::DFGame()
 {
-		valid = true;
+    valid = true;
+
 
     //Initialize SDL
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
@@ -51,6 +73,8 @@ DFGame::DFGame()
         valid = false;
 				return;
     }
+    
+    Player *player = new Player();
     
     //Create Window
     if( SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_OPENGL ) == NULL )

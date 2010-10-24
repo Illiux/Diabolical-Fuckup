@@ -2,6 +2,7 @@
 #define _DFGAME_PLAYER_H_
 
 #include "object.h"
+#include "stdio.h"
 
 #define PLAYER_WIDTH	50
 #define PLAYER_HEIGHT 	100
@@ -25,6 +26,11 @@ public:
 	float	getHealth();
 	void 	setHealth(float);
 	virtual void	draw();
+	void 	moveLeft();
+	void 	moveRight();
+	void 	moveUp();
+	void	moveDown();
+	void	jump();
 };
 
 #endif
