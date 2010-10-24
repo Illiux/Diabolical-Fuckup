@@ -14,8 +14,8 @@ set (
 	object.h
 	level.h
 	level.cpp
-	util.h
-	util.cpp
+	texture.h
+	texture.cpp
 	ui.h
 	ui.cpp
 	)

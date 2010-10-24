@@ -1,12 +1,44 @@
-#include "util.h"
+#include "texture.h"
 
-GLuint LoadTexture(std::string filename) {
-GLuint texture;			// This is a handle to our texture object
-SDL_Surface *surface;	// This surface will tell us the details of the image
-GLenum texture_format;
-GLint  nOfColors;
+bool Texture::isValid()
+{
+	bool valid = true;
+	if (texture==-1)
+		valid = false;
+	return valid;
+}
+
+int Texture::getWidth()
+{
+	return width;
+}
+
+int Texture::getHeight()
+{
+	return height;
+}
+
+void Texture::bind()
+{
+	glBindTexture( GL_TEXTURE_2D, texture);
+}
+
+// For creating invalid placeholder textures
+Texture::Texture()
+{
+	height = 0;
+	width = 0;
+	texture = -1;
+}
+
+Texture::Texture(std::string filename)
+{	
+	// This surface will tell us the details of the image
+	SDL_Surface *surface;	
+	GLenum texture_format;
+	GLint  nOfColors;
  
-if ( (surface = load_image(filename.c_str())) ) { 
+if ( (surface = loadImage(filename.c_str())) ) { 
  
 	// Check that the image's width is a power of 2
 	if ( (surface->w & (surface->w - 1)) != 0 ) {
@@ -50,22 +82,22 @@ if ( (surface = load_image(filename.c_str())) ) {
 	// Edit the texture object's image data using the information SDL_Surface gives us
 	glTexImage2D( GL_TEXTURE_2D, 0, nOfColors, surface->w, surface->h, 0,
                       texture_format, GL_UNSIGNED_BYTE, surface->pixels );
+	height = surface->h;
+	width = surface->w;
 } 
 else {
 	std::cout << "SDL could not load " << filename << ": " << SDL_GetError() << std::endl;
 	glDeleteTextures( 1, &texture );
-	return -1;
+	texture = -1;
 }    
  
 // Free the SDL_Surface only if it was successfully created
 if ( surface ) { 
 	SDL_FreeSurface( surface );
 }
-
-return texture;
 }
 
-SDL_Surface *load_image(std::string filename){
+SDL_Surface *Texture::loadImage(std::string filename){
 	SDL_Surface* any_image = NULL;
 	
 	
