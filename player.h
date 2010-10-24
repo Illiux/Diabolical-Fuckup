@@ -1,12 +1,13 @@
 #ifndef _DFGAME_PLAYER_H_
 #define _DFGAME_PLAYER_H_
 
+#include "object.h"
 #include "stdio.h"
 
 #define PLAYER_WIDTH	50
 #define PLAYER_HEIGHT 	100
 
-class Player{
+class Player: public GameObject {
 private:
 	float x;
 	float y;
@@ -14,16 +15,17 @@ private:
 	float health;
 public:
 	Player();
-	void 	setPosition(float, float);
-	void 	setX(float);
+	virtual void 	setPosition(float, float);
+  void 	setX(float);
 	void 	setY(float);
-	float 	getX();
-	float 	getY();
+	virtual void	move(float, float);
+	virtual float 	getX();
+	virtual float 	getY();
 	float 	getSpeed();
 	void 	setSpeed(float);
 	float	getHealth();
 	void 	setHealth(float);
-	void	draw();
+	virtual void	draw();
 	void 	moveLeft();
 	void 	moveRight();
 	void 	moveUp();

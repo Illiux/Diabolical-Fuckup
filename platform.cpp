@@ -1,6 +1,6 @@
 #include "platform.h"
 
-void Platform::Draw() {
+void Platform::draw() {
 	glTranslatef(x,y,-1.0);
 
 	glBegin(GL_QUADS);
@@ -24,13 +24,13 @@ float Platform::getY() {
 	return y;
 }
 
-void Platform::Move(float x, float y)
+void Platform::move(float x, float y)
 {
 	this->x += x;
 	this->y += y;
 }
 
-void Platform::SetPosition(float x, float y)
+void Platform::setPosition(float x, float y)
 {
 	this->x = x;
 	this->y = y;
@@ -44,7 +44,7 @@ Platform::Platform(float x, float y, int width, int height)
 	this->height = height;
 }
 
-bool Platform::Collides(Player player) {
+bool Platform::collides(Player player) {
  if ((player.getY() + PLAYER_HEIGHT) < y) return false;
  if ((player.getX() + PLAYER_WIDTH) < x) return false;
  if ((y + height) < player.getY()) return false;
