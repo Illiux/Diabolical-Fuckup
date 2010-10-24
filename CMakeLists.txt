@@ -18,6 +18,8 @@ set (
 	texture.cpp
 	ui.h
 	ui.cpp
+	items/item.h
+	items/item.cpp
 	)
 
 Find_Package( SDL REQUIRED )
