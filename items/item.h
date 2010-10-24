@@ -14,8 +14,8 @@ public:
 	virtual void Place();
 	virtual void Use();
 	virtual void Look();
-	bool mouseOver(float,float)
-}
+	bool mouseOver(float,float);
+};
 
 
 #endif

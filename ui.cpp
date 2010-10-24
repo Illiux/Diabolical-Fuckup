@@ -76,26 +76,27 @@ void UI::draw()
 	//glTranslatef(0,0,-1.0);
 
 	glBegin(GL_QUADS);
-	    glColor4f(0.0,0.0,1.0,1.0);
+	    glColor4f(0.0,0.0,1.0,0.5);
 
-	    glVertex3f(0,SCREEN_HEIGHT, 0);
-	    glVertex3f(SLOT_WIDTH * i,SCREEN_HEIGHT, 0);
-	    glVertex3f(SLOT_WIDTH * i,SCREEN_HEIGHT - SLOT_HEIGHT, 0);
-	    glVertex3f(0,SCREEN_HEIGHT - SLOT_HEIGHT, 0);
+	    glVertex3f(0,SCREEN_HEIGHT, 1);
+	    glVertex3f(0,SCREEN_HEIGHT - SLOT_HEIGHT, 1);
+	    glVertex3f(SLOT_WIDTH * i,SCREEN_HEIGHT - SLOT_HEIGHT, 1);
+	    glVertex3f(SLOT_WIDTH * i,SCREEN_HEIGHT, 1);
+	    
 	    
 	    
 	glEnd();
 
 	glBegin(GL_QUADS);
-	    glColor4f(0.0,1.0,1.0,1.0);
+	    glColor4f(0.0,1.0,1.0,0.5);
 
-	    glVertex3f(5,SCREEN_HEIGHT -5, 1);
-	    glVertex3f(SLOT_WIDTH * i- 5,SCREEN_HEIGHT - 5 , 1);
-	    glVertex3f(SLOT_WIDTH * i -5,SCREEN_HEIGHT - SLOT_HEIGHT + 5, 1);
-	    glVertex3f(5,SCREEN_HEIGHT - SLOT_HEIGHT + 5, 1);
-	    
+	    glVertex3f(5,SCREEN_HEIGHT -5, 0);
+	    glVertex3f(5,SCREEN_HEIGHT - SLOT_HEIGHT + 5, 0);
+	    glVertex3f(SLOT_WIDTH * i -5,SCREEN_HEIGHT - SLOT_HEIGHT + 5, 0);
+	    glVertex3f(SLOT_WIDTH * i- 5,SCREEN_HEIGHT - 5 , 0);
 	    
 	glEnd();
+
 
 
 	// Reset original translate
