@@ -5,6 +5,7 @@
 #include "stdio.h"
 #include "platform.h"
 #include "globals.h"
+#include "level.h"
 
 #define PLAYER_WIDTH	50
 #define PLAYER_HEIGHT 	100
@@ -17,10 +18,11 @@ private:
 	float health;
 	Vect2D	accel;
 	Vect2D	v;
-	Platform *floor;
+  Level *level;
 	bool	collides();
+	bool	singleCollide(GameObject *);
 public:
-	void setFloor(Platform *);
+	void setLevel(Level *);
 	void doMovement(float);
 	Player();
 	virtual void 	setPosition(float, float);
@@ -40,6 +42,8 @@ public:
 	void	moveDown();
 	void	jump();
 	void	stopX();
+	virtual float getHeight();
+	virtual float getWidth();
 };
 
 #endif

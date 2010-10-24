@@ -15,10 +15,6 @@ int DFGame::MainLoop() {
 	char *key;
 	bool draw_player = false;
 	
-	Platform floor(0,450,FLOOR_WIDTH,FLOOR_HEIGHT);
-
-	player->setFloor(&floor);
-
 	if (!IsValid()) {
 		return 1;
 	}
@@ -85,8 +81,7 @@ int DFGame::MainLoop() {
 		}	
 		glClear( GL_COLOR_BUFFER_BIT );
 
-		floor.draw();
-		player->draw();
+		level->draw();
 
 		SDL_GL_SwapBuffers();
 		SDL_Delay(1);
@@ -126,6 +121,19 @@ DFGame::DFGame()
     SDL_WM_SetCaption( "Diabolical Fuckup", NULL );
     
 		player = new Player();
+	
+		// Initialize some platforms
+		Platform *floor = new Platform(0,450,FLOOR_WIDTH,FLOOR_HEIGHT);
+		Platform *thing = new Platform(500,250,FLOOR_WIDTH/3,FLOOR_HEIGHT);
+
+		// Create a level and add everything
+		level = new Level();
+		level->addPlatform(floor);
+		level->addPlatform(thing);
+		level->addObject(player);
+
+		// Set level on player
+		player->setLevel(level);
 }
 
 bool DFGame::init_GL(){

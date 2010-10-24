@@ -19,8 +19,8 @@ public:
 	virtual void setPosition(float x, float y);
 	virtual float getX();
 	virtual float getY();
-	float getHeight();
-	float getWidth();
+	virtual float getHeight();
+	virtual float getWidth();
 };
 
 #endif

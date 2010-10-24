@@ -12,6 +12,8 @@ set (
 	player.h
 	player.cpp
 	object.h
+	level.h
+	level.cpp
 	)
 
 Find_Package( SDL REQUIRED )

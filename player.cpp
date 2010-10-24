@@ -104,16 +104,33 @@ void Player::draw()
 }
 
 //temporary
-void Player::setFloor(Platform *floor) {
-	this->floor = floor;
+void Player::setLevel(Level *level) {
+	this->level = level;
+}
+
+float Player::getHeight() {
+	return PLAYER_HEIGHT;
+}
+
+float Player::getWidth() {
+	return PLAYER_WIDTH;
+}
+
+bool Player::singleCollide(GameObject *obj) {
+	if ((y + PLAYER_HEIGHT) < obj->getY()) return false;
+	if ((obj->getY() + obj->getHeight()) < y) return false;
+	if ((x + PLAYER_WIDTH) < obj->getX()) return false;
+	if ((obj->getX() + obj->getWidth()) < x) return false;
+	return true;
 }
 
 bool Player::collides() {
-	if ((y + PLAYER_HEIGHT) < floor->getY()) return false;
-	if ((floor->getY() + floor->getHeight()) < y) return false;
-	if ((x + PLAYER_WIDTH) < floor->getX()) return false;
-	if ((floor->getX() + floor->getWidth()) < x) return false;
-	return true;
+	std::vector<GameObject*>* objects = level->getPlatforms();
+	std::vector<GameObject*>::iterator i;
+	for (i=objects->begin();i<objects->end();i++) {
+		if (singleCollide(*i)) return true;
+	}
+	return false;
 }
 
 void Player::doMovement(float dT)
