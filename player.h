@@ -12,6 +12,7 @@
 
 class Player: public GameObject {
 private:
+	GLuint texture;
 	float x;
 	float y;
 	float speed;
@@ -27,6 +28,7 @@ public:
 	void setLevel(Level *);
 	void doMovement(float);
 	Player();
+	Player(GLuint);
 	virtual void 	setPosition(float, float);
   void 	setX(float);
 	void 	setY(float);

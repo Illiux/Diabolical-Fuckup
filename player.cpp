@@ -6,6 +6,14 @@ Randy Tobias
 
 #include "player.h"
 
+Player::Player(GLuint texture)
+{
+	this->texture = texture;
+	x = 0.0;
+	y = 0.0;
+	speed = 0.0;
+	health = 100.0;
+}
 
 Player::Player()
 {
@@ -104,22 +112,33 @@ void Player::moveDown()
 
 void Player::draw()
 {
-    glTranslatef(x,y,-1.0);
+	glTranslatef(x,y,-1.0);
 
-    glBegin(GL_QUADS);
-	glColor4f(1.0,1.0,1.0,1.0);
+	if (texture!=-1) {
+		glEnable( GL_TEXTURE_2D );
+	} else {
+		glDisable( GL_TEXTURE_2D );
+	}
 
-	glVertex3f(0,0,0);
-	glVertex3f(PLAYER_WIDTH,0,0);
-	glVertex3f(PLAYER_WIDTH,PLAYER_HEIGHT,0);
-	glVertex3f(0,PLAYER_HEIGHT,0);
-    glEnd();
+	glBegin(GL_QUADS);
+		glColor4f(1.0,1.0,1.0,1.0);
 
-    // Reset original translate
-    glTranslatef(-x,-y,1.0);
+		glBindTexture( GL_TEXTURE_2D, texture );
+		glTexCoord2i( 0,0 );
+		glVertex3f(0,0,0);
+		glTexCoord2i( 1,0 );
+		glVertex3f(PLAYER_WIDTH,0,0);
+		glTexCoord2i( 1,1 );
+		glVertex3f(PLAYER_WIDTH,PLAYER_HEIGHT,0);
+		glTexCoord2i( 0,1 );
+		glVertex3f(0,PLAYER_HEIGHT,0);
+	glEnd();
+
+	// Reset original translate
+	glTranslatef(-x,-y,1.0);
 }
 
-//temporary
+
 void Player::setLevel(Level *level) {
 	this->level = level;
 }
