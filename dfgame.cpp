@@ -13,7 +13,7 @@ DFGame::~DFGame() {
 int DFGame::MainLoop() {
 	bool quit = false;
 	
-	Floor floor;
+	Platform floor(0,450,FLOOR_WIDTH,FLOOR_HEIGHT);
 
 	if (!IsValid()) {
 		return 1;
@@ -22,19 +22,16 @@ int DFGame::MainLoop() {
 	while (quit == false){
 		while( SDL_PollEvent( &event ) )
 		{
-			floor.handle_input();
-
 			if( event.type == SDL_QUIT )
 			{
 				quit = true;
 			}
 		}
 
-		floor.move();
 
 		glClear( GL_COLOR_BUFFER_BIT );
 
-		floor.show();
+		floor.Draw();
 
 		SDL_GL_SwapBuffers();
 
@@ -98,47 +95,5 @@ bool DFGame::init_GL(){
 
 bool DFGame::IsValid() {
 	return valid;
-}
-
-void Floor::show(){
-	//move to offset
-
-	glTranslatef(x,y,0);
-
-	//start Quad
-	glBegin(GL_QUADS);
-		glColor4f(1.0,1.0,1.0,1.0);
-
-		glVertex3f(0,0,0);
-		glVertex3f(FLOOR_WIDTH,0,0);
-		glVertex3f(FLOOR_WIDTH,FLOOR_HEIGHT,0);
-		glVertex3f(0,FLOOR_HEIGHT,0);
-	glEnd();
-
-	glLoadIdentity();
-}
-Floor::Floor(){
-	x = 0;
-	y = 450;
-}
-void Floor::handle_input(){
-	/*if (event.type == SDL_KEYDOWN){
-		switch(event.key.keysym.sym){
-			case SDLK_UP: yVel-= Floor_HEIGHT/2;break;
-			case SDLK_DOWN:yVel +=Floor_HEIGHT/2;break;
-			case SDLK_RIGHT:xVel += Floor_WIDTH/2;break;
-			case SDLK_LEFT: xVel -= Floor_WIDTH/2;break;
-		}
-	}else if (event.type == SDL_KEYUP){
-		switch(event.key.keysym.sym){
-			case SDLK_UP: yVel+= Floor_HEIGHT/2;break;
-			case SDLK_DOWN:yVel -=Floor_HEIGHT/2;break;
-			case SDLK_RIGHT:xVel -= Floor_WIDTH/2;break;
-			case SDLK_LEFT: xVel += Floor_WIDTH/2;break;
-		}
-	}*/
-}
-void Floor::move(){
-
 }
 

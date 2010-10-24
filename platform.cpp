@@ -16,33 +16,38 @@ void Platform::Draw() {
 	glTranslatef(-x,-y,1.0);
 }
 
-float Platform::GetX() {
+float Platform::getX() {
 	return x;
 }
 
-float Platform::GetY() {
+float Platform::getY() {
 	return y;
 }
 
 void Platform::Move(float x, float y)
 {
-	this.x += x;
-	this.y += y;
+	this->x += x;
+	this->y += y;
 }
 
 void Platform::SetPosition(float x, float y)
 {
-	this.x = x;
-	this.y = y;
+	this->x = x;
+	this->y = y;
 }
 
 Platform::Platform(float x, float y, int width, int height)
 {
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = height;
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
 }
 
-bool Platform::Collides(Player player) {
-}
+//bool Platform::Collides(Player player) {
+//  if ((player.getY() + PLAYER_HEIGHT) < y) return false;
+//  if ((player.getX() + PLAYER_WIDTH) < x) return false;
+//  if ((y + height) < player.getY()) return false;
+//  if ((x + width) < player.getX()) return false;
+//  return true;
+//}

@@ -2,6 +2,7 @@
 #define _PLATFORM_H_
 
 #include "dfgame.h"
+#include "player.h"
 
 class Platform {
 private:
@@ -10,15 +11,15 @@ private:
 	float y;
 	int		width;
 	int		height;
-	GLuint	texture;
+	//GLuint	texture;
 public:
-	Platform(float x, float y, int width, int height)
+	Platform(float x, float y, int width, int height);
 	void Move(float x, float y);
 	bool Collides(Player);
 	void Draw();
 	void SetPosition(float x, float y);
-	float GetX();
-	float GetY();
+	float getX();
+	float getY();
 };
 
 #endif

@@ -3,7 +3,6 @@ project(diabolical)
 
 set (
 	SOURCES
-	mouse.h
 	dfgame.cpp
 	dfgame.h
 	globals.h
