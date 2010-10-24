@@ -1,4 +1,5 @@
 #include "level.h"
+#include "platform.h"
 
 void Level::addPlatform(GameObject *obj)
 {
@@ -8,6 +9,14 @@ void Level::addPlatform(GameObject *obj)
 void Level::addObject(Item *obj)
 {
 	objects.push_back(obj);
+}
+
+Level::Level()
+{
+	Platform *platform = new Platform(-50,0,40,600);
+	Platform *platform2 = new Platform(810,0,40,600);
+	platforms.push_back(platform);
+	platforms.push_back(platform2);
 }
 
 void Level::draw()

@@ -106,8 +106,7 @@ void Player::stopRight()
 
 void Player::moveUp()
 {
-	y += 0.01;
-	if (collides())
+	if (colliding)
 		v.y = -10;
 }
 
@@ -184,18 +183,21 @@ void Player::doMovement(float dT)
 	v.x += accel.x*dT;
 	v.y += accel.y*dT;
 
+	colliding = false;
 
 	y += v.y*dT*SCALE_FACTOR;
 	if (collides()) {
 		y -= v.y*dT*SCALE_FACTOR;
 		accel.y = 0.0;
 		v.y = 0.0;
+		colliding = true;
 	}
 	x += v.x*dT*SCALE_FACTOR;
 	if (collides()) {
 		x -= v.x*dT*SCALE_FACTOR;
 		accel.x = 0.0;
 		v.x = 0.0;
+		colliding = true;
 	}
 }
 /*

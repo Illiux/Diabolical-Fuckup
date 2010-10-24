@@ -25,6 +25,7 @@ private:
 	bool	left;
 	bool	right;
 	bool	collides();
+	bool  colliding;
 public:
 	bool	singleCollide(GameObject *);
 	void setLevel(Level *);

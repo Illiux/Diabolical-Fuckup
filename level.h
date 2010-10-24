@@ -11,6 +11,7 @@ private:
 	std::vector<Item*> objects;
 	std::vector<GameObject*> platforms;
 public:
+	Level();
 	void addObject(Item *);
 	void addPlatform(GameObject *);
 	void draw();
