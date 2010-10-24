@@ -7,14 +7,16 @@
 #include "globals.h"
 #include "level.h"
 
-#define PLAYER_WIDTH	50
-#define PLAYER_HEIGHT 	80
+#define PLAYER_WIDTH	100
+#define PLAYER_HEIGHT 	100
 
 class Player: public GameObject {
 private:
 	Texture* texLeft;
 	Texture* texRight;
 	Texture* texFront;
+	Texture* texRightJump;
+	Texture* texLeftJump;
 	float x;
 	float y;
 	float speed;
@@ -31,7 +33,7 @@ public:
 	void setLevel(Level *);
 	void doMovement(float);
 	Player();
-	Player(Texture*,Texture*,Texture*);
+	Player(Texture*,Texture*,Texture*,Texture*,Texture*);
 	virtual void 	setPosition(float, float);
   void 	setX(float);
 	void 	setY(float);

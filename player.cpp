@@ -6,11 +6,13 @@ Randy Tobias
 
 #include "player.h"
 
-Player::Player(Texture* left,Texture* right, Texture* front)
+Player::Player(Texture* left,Texture* right, Texture* front, Texture* jRight, Texture *jLeft)
 {
 	texLeft = left;
 	texRight = right;
 	texFront = front;
+	texRightJump = jRight;
+	texLeftJump = jLeft;
 	x = 0.0;
 	y = 0.0;
 	speed = 0.0;
@@ -26,6 +28,8 @@ Player::Player()
 		texFront = new Texture();
 		texRight = new Texture();
 		texLeft = new Texture();
+		texLeftJump = new Texture();
+		texRightJump = new Texture();
 }
 
 void Player::setPosition(float x, float y)
@@ -126,9 +130,17 @@ void Player::draw()
 
 	texFront->bind();
 	if (right) {
-		texRight->bind();
+		if (colliding) {
+			texRight->bind();
+		} else {
+			texRightJump->bind();
+		}
 	} else if (left) {
-		texLeft->bind();
+		if (colliding) {
+			texLeft->bind();
+		} else {
+			texLeftJump->bind();
+		}
 	}
 	glBegin(GL_QUADS);
 		glColor4f(1.0,1.0,1.0,1.0);

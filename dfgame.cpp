@@ -151,15 +151,17 @@ DFGame::DFGame()
 		ui = new UI();
 
 		// Initialize a texture
-		Texture *front = new Texture("images/Tesla.png");
-		Texture *left = new Texture("images/Tesla_left.png");
-		Texture *right = new Texture("images/Tesla_right.png");
+		Texture *front = new Texture("images/GuyFront.png");
+		Texture *left = new Texture("images/GuyLeft.png");
+		Texture *right = new Texture("images/GuyRight.png");
+		Texture *jright = new Texture("images/GuyRightJump.png");
+		Texture *jleft = new Texture("images/GuyLeftJump.png");
 		Texture *tex = new Texture("images/greybrick.png");
 		Texture *doorclosed = new 
 Texture("images/door_closed.png");
 		Texture *dooropen = new Texture("images/door_open.png");
 		
-		player = new Player(left,right,front);
+		player = new Player(left,right,front,jright,jleft);
 		
 		// Initialize some platforms
 		Platform *floor = new Platform(0,450,FLOOR_WIDTH,FLOOR_HEIGHT,tex);
