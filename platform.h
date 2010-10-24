@@ -3,6 +3,7 @@
 
 #include "globals.h"
 #include "object.h"
+#include "util.h"
 
 class Platform: public GameObject {
 private:
@@ -11,9 +12,10 @@ private:
 	float y;
 	float	width;
 	float	height;
-	//GLuint	texture;
+	GLuint	texture;
 public:
 	Platform(float x, float y, int width, int height);
+	Platform(float x, float y, int width, int height, GLuint texture);
 	virtual void move(float x, float y);
 	virtual void draw();
 	virtual void setPosition(float x, float y);

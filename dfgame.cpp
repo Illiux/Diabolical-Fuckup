@@ -140,6 +140,7 @@ DFGame::DFGame()
 }
 
 bool DFGame::init_GL(){
+	glEnable( GL_TEXTURE_2D );
 	//clear color
 	glClearColor(0,0,0,0);
 
@@ -147,6 +148,8 @@ bool DFGame::init_GL(){
 	glMatrixMode( GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0,SCREEN_WIDTH,SCREEN_HEIGHT,0,-1,1);
+
+	glClear( GL_COLOR_BUFFER_BIT );
 
 	//innitialize modelview
 	glMatrixMode( GL_MODELVIEW );
@@ -156,6 +159,7 @@ bool DFGame::init_GL(){
 	if (glGetError() != GL_NO_ERROR){
 		return false;
 	}
+
 	//else
 	return true;
 }

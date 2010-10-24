@@ -14,6 +14,8 @@ set (
 	object.h
 	level.h
 	level.cpp
+	util.h
+	util.cpp
 	ui.h
 	ui.cpp
 	)
@@ -24,6 +26,7 @@ Find_Package( OpenGL REQUIRED )
 
 include_directories( ${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} )
 
-link_libraries(${SDL_LIBRARY} ${SDLIMAGE_LIBRARY} ${OPENGL_gl_LIBRARY})
+link_libraries(${SDL_LIBRARY} ${SDLIMAGE_LIBRARY} ${OPENGL_gl_LIBRARY}
+	${OPENGL_glu_LIBRARY})
 
 add_executable(diabolical ${SOURCES})
