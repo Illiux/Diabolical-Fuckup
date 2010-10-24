@@ -123,11 +123,18 @@ DFGame::DFGame()
     SDL_WM_SetCaption( "Diabolical Fuckup", NULL );
 
 		ui = new UI();
-		player = new Player();
+
+		// Initialize a texture
+		Texture *front = new Texture("images/Tesla.png");
+		Texture *left = new Texture("images/Tesla_left.png");
+		Texture *right = new Texture("images/Tesla_right.png");
+		Texture *tex = new Texture("images/greybrick.png");
 	
+		player = new Player(left,right,front);
+		
 		// Initialize some platforms
-		Platform *floor = new Platform(0,450,FLOOR_WIDTH,FLOOR_HEIGHT);
-		Platform *thing = new Platform(500,250,FLOOR_WIDTH/3,FLOOR_HEIGHT);
+		Platform *floor = new Platform(0,450,FLOOR_WIDTH,FLOOR_HEIGHT,tex);
+		Platform *thing = new Platform(500,250,FLOOR_WIDTH/3,FLOOR_HEIGHT,tex);
 
 		// Create a level and add everything
 		level = new Level();

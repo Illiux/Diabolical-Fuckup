@@ -6,9 +6,11 @@ Randy Tobias
 
 #include "player.h"
 
-Player::Player(GLuint texture)
+Player::Player(Texture* left,Texture* right, Texture* front)
 {
-	this->texture = texture;
+	texLeft = left;
+	texRight = right;
+	texFront = front;
 	x = 0.0;
 	y = 0.0;
 	speed = 0.0;
@@ -21,6 +23,9 @@ Player::Player()
     y = 0.0;
     speed = 0.0;
     health = 100.0;
+		texFront = new Texture();
+		texRight = new Texture();
+		texLeft = new Texture();
 }
 
 void Player::setPosition(float x, float y)
@@ -114,16 +119,21 @@ void Player::draw()
 {
 	glTranslatef(x,y,-1.0);
 
-	if (texture!=-1) {
+	if (texFront->isValid()) {
 		glEnable( GL_TEXTURE_2D );
 	} else {
 		glDisable( GL_TEXTURE_2D );
 	}
 
+	texFront->bind();
+	if (right) {
+		texRight->bind();
+	} else if (left) {
+		texLeft->bind();
+	}
 	glBegin(GL_QUADS);
 		glColor4f(1.0,1.0,1.0,1.0);
 
-		glBindTexture( GL_TEXTURE_2D, texture );
 		glTexCoord2i( 0,0 );
 		glVertex3f(0,0,0);
 		glTexCoord2i( 1,0 );
