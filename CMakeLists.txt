@@ -31,6 +31,6 @@ Find_Package( OpenGL REQUIRED )
 include_directories( ${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} )
 
 link_libraries(${SDL_LIBRARY} ${SDLIMAGE_LIBRARY} ${OPENGL_gl_LIBRARY}
-	${OPENGL_glu_LIBRARY})
+	${OPENGL_glu_LIBRARY} glpng)
 
 add_executable(diabolical ${SOURCES})
