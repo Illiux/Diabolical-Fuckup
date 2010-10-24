@@ -44,10 +44,10 @@ Platform::Platform(float x, float y, int width, int height)
 	this->height = height;
 }
 
-//bool Platform::Collides(Player player) {
-//  if ((player.getY() + PLAYER_HEIGHT) < y) return false;
-//  if ((player.getX() + PLAYER_WIDTH) < x) return false;
-//  if ((y + height) < player.getY()) return false;
-//  if ((x + width) < player.getX()) return false;
-//  return true;
-//}
+bool Platform::Collides(Player player) {
+ if ((player.getY() + PLAYER_HEIGHT) < y) return false;
+ if ((player.getX() + PLAYER_WIDTH) < x) return false;
+ if ((y + height) < player.getY()) return false;
+ if ((x + width) < player.getX()) return false;
+ return true;
+}
