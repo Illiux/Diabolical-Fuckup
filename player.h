@@ -19,6 +19,8 @@ private:
 	Vect2D	accel;
 	Vect2D	v;
   Level *level;
+	bool	left;
+	bool	right;
 	bool	collides();
 	bool	singleCollide(GameObject *);
 public:
@@ -40,6 +42,8 @@ public:
 	void 	moveRight();
 	void 	moveUp();
 	void	moveDown();
+	void	stopLeft();
+	void	stopRight();
 	void	jump();
 	void	stopX();
 	virtual float getHeight();

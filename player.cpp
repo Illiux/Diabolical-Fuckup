@@ -68,11 +68,27 @@ void Player::setHealth(float health)
 void Player::moveLeft()
 {
 	v.x-=2.5;
+	left = true;
 }
 
 void Player::moveRight()
 {
 	v.x+=2.5;
+	right = true;
+}
+
+void Player::stopLeft()
+{
+	if ((v.x != 0) || right)
+		v.x+=2.5;
+	left = false;
+}
+
+void Player::stopRight()
+{
+	if ((v.x != 0) || left)
+		v.x-=2.5;
+	right = false;
 }
 
 void Player::moveUp()
