@@ -25,8 +25,8 @@ private:
 	bool	left;
 	bool	right;
 	bool	collides();
-	bool	singleCollide(GameObject *);
 public:
+	bool	singleCollide(GameObject *);
 	void setLevel(Level *);
 	void doMovement(float);
 	Player();

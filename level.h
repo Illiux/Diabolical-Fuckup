@@ -3,18 +3,19 @@
 
 #include <vector>
 #include "object.h"
+#include "items/item.h"
 
 class Level
 {
 private:
-	std::vector<GameObject*> objects;
+	std::vector<Item*> objects;
 	std::vector<GameObject*> platforms;
 public:
-	void addObject(GameObject *);
+	void addObject(Item *);
 	void addPlatform(GameObject *);
 	void draw();
 	std::vector<GameObject*>* getPlatforms();
-	std::vector<GameObject*>* getObjects();
+	std::vector<Item*>* getObjects();
 };
 
 #endif
