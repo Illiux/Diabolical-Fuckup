@@ -127,6 +127,9 @@ DFGame::DFGame()
         valid = false;
 				return;
     }
+
+		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+		SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,8);
     
     //Create Window
     if( SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_OPENGL ) == NULL )
@@ -164,7 +167,7 @@ Texture("images/door_closed.png");
 
 		// Door?
 		Door *door1 = new Door(700,350,dooropen,doorclosed);
-		Door *door2 = new Door(0,0,dooropen,doorclosed);
+		Door *door2 = new Door(0,350,dooropen,doorclosed);
 		door1->link(door2);
 
 		// Create a level and add everything
@@ -175,9 +178,10 @@ Texture("images/door_closed.png");
 
 		Level *level2 = new Level();
 		level2->addPlatform(floor);
-		level2->addPlatform(thing);
-		level2->addPlatform(thing);
 		level2->addObject(door2);
+
+		door2->setDest(level);
+		door1->setDest(level2);
 
 		// Set level on player
 		player->setLevel(level);
@@ -203,7 +207,9 @@ bool DFGame::init_GL(){
 		return false;
 	}
 
+	glEnable(GL_BLEND);
 	glEnable(GL_ALPHA_TEST);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//else
